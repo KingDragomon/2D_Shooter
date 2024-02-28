@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca84ercfvqmmv"]
+
+[ext_resource type="Script" path="res://Target_Dummy/Dumy.gd" id="1_7741s"]
+[ext_resource type="Texture2D" uid="uid://wbr0yaev3p7l" path="res://Test_Assets/Player_Test.png" id="1_mvqoc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqkv0"]
+size = Vector2(16, 16)
+
+[node name="Dumy" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7741s")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.662745, 0.137255, 0.113725, 1)
+texture = ExtResource("1_mvqoc")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uqkv0")
