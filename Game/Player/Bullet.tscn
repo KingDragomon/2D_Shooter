@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dll3o5hq0wlg"]
+
+[ext_resource type="Script" path="res://Player/Bullet.gd" id="1_jh2xl"]
+[ext_resource type="Texture2D" uid="uid://bvw3exjrx02m0" path="res://Test_Assets/bullet.png" id="1_r775o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_px5vm"]
+radius = 2.0
+
+[node name="Bullet" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_jh2xl")
+
+[node name="Bullet_Collision" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 12
+
+[node name="Bullet_Sprite" type="Sprite2D" parent="Bullet_Collision"]
+texture_filter = 1
+texture = ExtResource("1_r775o")
+
+[node name="Bullet_Body" type="CollisionShape2D" parent="Bullet_Collision"]
+shape = SubResource("CircleShape2D_px5vm")
+
+[node name="Life" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Bullet_Collision" to="." method="_on_bullet_collision_body_entered"]
+[connection signal="timeout" from="Life" to="." method="_on_life_timeout"]

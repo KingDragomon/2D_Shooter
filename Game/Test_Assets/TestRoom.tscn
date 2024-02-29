@@ -1,13 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd628t1jl1wlo"]
+[gd_scene load_steps=5 format=3 uid="uid://dd628t1jl1wlo"]
 
 [ext_resource type="PackedScene" uid="uid://dx1m6cvawtfyx" path="res://Player/player.tscn" id="1_1l21v"]
 [ext_resource type="Texture2D" uid="uid://d3270apfirtxl" path="res://icon.svg" id="1_tkcjo"]
+[ext_resource type="PackedScene" uid="uid://ca84ercfvqmmv" path="res://Target_Dummy/Dumy.tscn" id="3_ugoch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miess"]
+size = Vector2(392, 41)
 
 [node name="Level" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0.196078, 0.196078, 0.196078, 1)
 position = Vector2(-18.5, -12)
 scale = Vector2(3.69531, 1.75)
 texture = ExtResource("1_tkcjo")
 
-[node name="Player" parent="." instance=ExtResource("1_1l21v")]
+[node name="Player_origin" parent="." instance=ExtResource("1_1l21v")]
+
+[node name="Dumy" parent="." instance=ExtResource("3_ugoch")]
+position = Vector2(125, 0)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(0, -73)
+collision_layer = 8
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+modulate = Color(0, 0.447059, 0.45098, 1)
+scale = Vector2(3.03906, 0.3125)
+texture = ExtResource("1_tkcjo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_miess")
